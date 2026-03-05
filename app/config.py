@@ -18,10 +18,11 @@ class Settings(BaseSettings):
     EMBEDDING_SERVICE_URL: str
 
     # The specific chat model to use from OpenRouter
-    OPENROUTER_CHAT_MODEL: str = "openai/gpt-oss-20b:free"
+    # The best model "openai/gpt-oss-20b:free"
+    OPENROUTER_CHAT_MODEL: str = "arcee-ai/trinity-large-preview:free"
 
     # The first fallback model to use if the primary model fails
-    OPENROUTER_FALLBACK_MODEL: str = "arcee-ai/trinity-large-preview:free"
+    OPENROUTER_FALLBACK_MODEL: str = "stepfun/step-3.5-flash:free"
 
     # The second fallback model to use if the first fallback fails
     OPENROUTER_FALLBACK_MODEL_2: str = "stepfun/step-3.5-flash:free"
