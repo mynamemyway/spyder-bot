@@ -199,3 +199,4 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 file:test_db\?mode=memory&cache=shared
+/4dev/archiv
