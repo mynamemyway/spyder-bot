@@ -1,0 +1,28 @@
+# Telegram Bot Framework
+aiogram==3.22.0
+
+# Configuration Management
+pydantic-settings==2.10.1
+python-dotenv==1.0.1
+pydantic==2.10.3
+
+# LLM Orchestration & Integration
+langchain==0.2.11
+langchain-community==0.2.10
+langchain-openai==0.1.19
+
+# Vector Database & Embeddings
+chromadb==0.5.4
+langchain-chroma==0.1.2
+
+# unstructured==0.15.0 - Perspective instead of TextLoader
+
+# Async Database Driver
+aiosqlite==0.20.0
+
+# HTTP Client with retry capabilities
+httpx==0.28.1
+
+# Testing Framework
+pytest==8.4.0
+pytest-asyncio==0.23.8

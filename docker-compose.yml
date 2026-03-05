@@ -1,0 +1,30 @@
+# docker-compose.yml
+services:
+  bot:
+    build:
+      context: .
+      args:
+        # Передаем переменные, необходимые для этапа сборки (индексации RAG)
+        - BOT_TOKEN=${BOT_TOKEN}
+        - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+        - EMBEDDING_SERVICE_URL=${EMBEDDING_SERVICE_URL}
+        - MANAGER_TELEGRAM_URL=${MANAGER_TELEGRAM_URL}
+    container_name: ai-sales-agent
+    env_file:
+      - .env
+    volumes:
+      # Используем именованные тома для персистентного хранения данных.
+      # Docker управляет этими томами и корректно инициализирует их
+      # данными из образа при первом запуске.
+      - chroma_data:/app/chroma_db
+      - sqlite_data:/app/app/db
+      # Bind mount для assets, чтобы можно было менять картинки без пересборки.
+      - ./assets:/app/assets
+    restart: unless-stopped
+    # Если бот должен быть доступен извне (например, для вебхуков), раскомментируйте:
+    # ports:
+    #   - "8080:8080"
+
+volumes:
+  chroma_data:
+  sqlite_data:

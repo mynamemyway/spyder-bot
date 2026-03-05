@@ -1,0 +1,21 @@
+# .dockerignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+.env
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
+README.md
+LICENSE
+4dev/
+tests/
+venv/
+.venv/
+*.log
+*.sqlite3  # ← не игнорируем! но он в app/db, а мы монтируем всю папку
