@@ -18,16 +18,16 @@ class Settings(BaseSettings):
     EMBEDDING_SERVICE_URL: str
 
     # The specific chat model to use from OpenRouter
-    OPENROUTER_CHAT_MODEL: str = "mistralai/mistral-small"
+    OPENROUTER_CHAT_MODEL: str = "openai/gpt-oss-20b:free"
 
     # The fallback model to use if the primary model fails
-    OPENROUTER_FALLBACK_MODEL: str = "mistralai/mistral-small"
+    OPENROUTER_FALLBACK_MODEL: str = "arcee-ai/trinity-large-preview:free"
 
     # The base URL for the OpenRouter API
     OPENROUTER_API_BASE: str = "https://openrouter.ai/api/v1"
 
     # Controls the creativity of the response (0.0 - 1.0)
-    OPENROUTER_TEMPERATURE: float = 0.7
+    OPENROUTER_TEMPERATURE: float = 1
 
     # Limits the length of the generated response in tokens
     OPENROUTER_MAX_TOKENS: int = 1024
