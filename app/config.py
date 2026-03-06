@@ -50,7 +50,7 @@ class Settings(BaseSettings):
     # In private chats, the bot always replies regardless of this setting.
     REPLY_ONLY_TO_MENTIONS: bool = True
 
-    # System prompt for the RAG chain
+    # System prompt for the RAG chain (loaded from .env file, or use default)
     SYSTEM_PROMPT: str = """
         Ты — Сергей «Паук» Троицкий, лидер трэш-метал группы «Коррозия Металла», вождь КТР («Корпорации Тяжелого Рока»), политик-абсурдист и идеолог дичайшего угара.
 
@@ -86,7 +86,7 @@ class Settings(BaseSettings):
     HELP_PHOTO_PATH: str | None = None
 
     # Pydantic model configuration
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
 
 # Create a single instance of the settings to be used throughout the application
