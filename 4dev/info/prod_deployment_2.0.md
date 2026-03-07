@@ -148,12 +148,25 @@ https://github.com/mynamemyway/ai-spyder-bot
 
 **На сервере по SSH:**
 
-1.  **Перейди в директорию проекта:**
+0.  **Подключись к серверу:**
+
+    ```bash
+    scp ~/Documents/GitHub/ai-spyder-bot/.env mynamemyway@91.206.14.93:/home/mynamemyway/projects/ai-spyder-bot/.env
+
+    ```
+
+1.  **Подключись к серверу:**
+
+    ```bash
+    ssh mynamemyway@91.206.14.93
+    ```
+
+2.  **Перейди в директорию проекта:**
     ```bash
     cd /home/mynamemyway/projects/ai-spyder-bot
     ```
 
-2.  **Перезапусти контейнер (новый `.env` применится автоматически):**
+3.  **Перезапусти контейнер (новый `.env` применится автоматически):**
     ```bash
     docker-compose restart
     ```
