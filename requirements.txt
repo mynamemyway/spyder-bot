@@ -1,6 +1,9 @@
 # Telegram Bot Framework
 aiogram==3.22.0
 
+# HTTP proxy support for aiogram
+aiohttp-socks==0.11.0
+
 # Configuration Management
 pydantic-settings==2.10.1
 python-dotenv==1.0.1

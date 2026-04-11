@@ -24,33 +24,41 @@ class TelemetryFilter(logging.Filter):
 async def main() -> None:
     """
     Initializes and starts the Telegram bot.
-    This function sets up the bot and dispatcher, registers handlers (in the future),
-    and starts polling for updates from Telegram.
     """
     # Configure logging first to ensure handlers and filters are set up correctly.
     logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 
     # Add the custom filter to the root logger to suppress ChromaDB telemetry errors
     telemetry_filter = TelemetryFilter()
-    # Apply the filter to all existing handlers of the root logger.
     for handler in logging.getLogger().handlers:
         handler.addFilter(telemetry_filter)
 
-    # Initialize Bot and Dispatcher instances. The bot token is read from the settings.
-    bot = Bot(
-        token=settings.BOT_TOKEN,
-        default=DefaultBotProperties(parse_mode="Markdown"),
-    )
+    # Create aiohttp session with proxy if configured
+    if settings.TELEGRAM_PROXY_URL:
+        from aiogram.client.session.aiohttp import AiohttpSession
+        session = AiohttpSession(proxy=settings.TELEGRAM_PROXY_URL)
+        bot = Bot(
+            token=settings.BOT_TOKEN,
+            default=DefaultBotProperties(parse_mode="Markdown"),
+            session=session,
+        )
+        logging.info("Bot started with proxy: %s", settings.TELEGRAM_PROXY_URL)
+    else:
+        bot = Bot(
+            token=settings.BOT_TOKEN,
+            default=DefaultBotProperties(parse_mode="Markdown"),
+        )
+        logging.info("Bot started without proxy")
+
     dp = Dispatcher()
 
-    # Include the router in the dispatcher. This registers all handlers from the router.
+    # Include the router in the dispatcher.
     dp.include_router(user_handlers.router)
 
     # Set the bot's UI commands (e.g., /start, /help) in the Telegram menu.
     await set_ui_commands(bot)
 
     # Start the polling process to receive updates from Telegram.
-    # This will run indefinitely until the process is stopped.
     await dp.start_polling(bot)
 
 

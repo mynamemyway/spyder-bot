@@ -11,6 +11,9 @@ class Settings(BaseSettings):
     # Telegram Bot Token from @BotFather
     BOT_TOKEN: str
 
+    # HTTP proxy URL for bypassing Telegram API restrictions (optional)
+    TELEGRAM_PROXY_URL: str | None = None
+
     # OpenRouter API Key
     OPENROUTER_API_KEY: str
 
